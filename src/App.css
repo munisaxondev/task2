@@ -1,46 +1,76 @@
+:root {
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-light: #eff6ff;
+  --white: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(160deg, var(--blue-light) 0%, var(--white) 100%);
+  color: var(--text);
+}
+
 .app {
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.header {
   text-align: center;
+  margin-bottom: 32px;
 }
 
 .header h1 {
+  margin: 0;
+  font-size: 2.25rem;
   color: var(--blue);
-  font-size: 2rem;
   letter-spacing: -0.5px;
 }
 
 .subtitle {
+  margin: 8px 0 0;
   color: var(--muted);
-  margin-top: 6px;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
-.counter {
-  margin: 24px 0 16px;
-  font-weight: 600;
-  color: var(--blue-dark);
-  background: var(--blue-light);
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 0.85rem;
+.board {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Card with 3D flip */
 .card {
-  perspective: 1200px;
+  width: 100%;
   height: 280px;
+  perspective: 1200px;
   cursor: pointer;
   outline: none;
+}
+
+.card:focus-visible .card-inner {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+  border-radius: 18px;
 }
 
 .card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
 }
 
@@ -48,21 +78,17 @@
   transform: rotateY(180deg);
 }
 
-.card:focus-visible .card-inner {
-  box-shadow: 0 0 0 3px var(--blue-light);
-  border-radius: 20px;
-}
-
 .card-face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 20px;
+  border-radius: 18px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  text-align: center;
   box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
 }
 
@@ -79,11 +105,11 @@
 
 .card-label {
   text-transform: uppercase;
+  font-size: 0.75rem;
   letter-spacing: 1.5px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  opacity: 0.7;
+  font-weight: 600;
   margin-bottom: 16px;
+  opacity: 0.7;
 }
 
 .card-front .card-label {
@@ -91,49 +117,55 @@
 }
 
 .card-text {
-  font-size: 1.4rem;
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.5;
   font-weight: 500;
-  line-height: 1.4;
 }
 
-/* Controls */
+.counter {
+  margin: 24px 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
 .controls {
   display: flex;
   gap: 12px;
-  margin-top: 28px;
-  justify-content: center;
+  width: 100%;
 }
 
 .btn {
-  border: none;
+  flex: 1;
+  padding: 14px 20px;
   border-radius: 12px;
-  padding: 12px 20px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.1s ease, background 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid var(--blue);
+  transition: transform 0.1s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .btn:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 .btn-primary {
   background: var(--blue);
   color: var(--white);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
 }
 
 .btn-primary:hover {
   background: var(--blue-dark);
+  border-color: var(--blue-dark);
 }
 
-.btn-ghost {
+.btn-secondary {
   background: var(--white);
   color: var(--blue);
-  border: 2px solid var(--blue-light);
 }
 
-.btn-ghost:hover {
+.btn-secondary:hover {
   background: var(--blue-light);
 }
